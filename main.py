@@ -17,6 +17,8 @@ logger = logging.getLogger(__name__)
 
 # Get the bot token from environment variables
 TOKEN = os.getenv("TELEGRAM_TOKEN")
+if not TOKEN:
+    raise ValueError("No TELEGRAM_TOKEN found. Please set it in your environment variables.")
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
