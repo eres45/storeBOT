@@ -43,10 +43,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Parses the CallbackQuery and updates the message text."""
     query = update.callback_query
-
-    # CallbackQueries need to be answered, even if no notification to the user is needed
-    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     await query.answer()
+
+    # Keyboard with a back button.
+    back_keyboard = [[InlineKeyboardButton("⬅️ Back", callback_data="main_menu")]]
+    reply_markup_back = InlineKeyboardMarkup(back_keyboard)
 
     if query.data == "channels":
         text = (
@@ -54,6 +55,8 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             "🔗 Main Channel: https://t.me/+WmR8_AwNaVFjYjk9\n"
             "💧 Daily Combo Drops: https://t.me/+XOYKtSnUYOIwMjM1"
         )
+        await query.edit_message_text(text=text, reply_markup=reply_markup_back)
+
     elif query.data == "store":
         text = (
             "Welcome to our store! We offer a wide range of digital products and services, including:\n\n"
@@ -63,14 +66,29 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             "🎬 Streaming Service Subscriptions (Netflix, Prime, Hotstar, etc.)\n"
             "🚀 Developer Tool Accounts (Cursor, Windsurf, Augment Code, Trae, etc.)\n"
             "🔑 API Keys (Unlimited Image Generation, Chatbots, etc.)\n"
-            "📚 Educational Courses"
+            "📚 Educational Courses\n\n"
+            "To buy, contact - @eres007"
         )
+        await query.edit_message_text(text=text, reply_markup=reply_markup_back)
+
     elif query.data == "contact":
         text = "For inquiries and support, please reach out to us at: @eres007"
-    else:
-        text = "Unknown option"
+        await query.edit_message_text(text=text, reply_markup=reply_markup_back)
 
-    await query.edit_message_text(text=text)
+    elif query.data == "main_menu":
+        # This is the same as the start command, but we edit the message instead of sending a new one
+        keyboard = [
+            [InlineKeyboardButton("📢 Our Channels", callback_data="channels")],
+            [InlineKeyboardButton("🛒 Store", callback_data="store")],
+            [InlineKeyboardButton("📞 Contact", callback_data="contact")],
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        welcome_message = (
+            "👋 Welcome to Eres Bot !\n\n"
+            "We're excited to have you here.\n\n"
+            "🔽 Use the buttons below to get started"
+        )
+        await query.edit_message_text(text=welcome_message, reply_markup=reply_markup)
 
 
 def main() -> None:
