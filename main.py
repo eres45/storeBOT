@@ -42,23 +42,23 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     if query.data == "channels":
         text = (
-            "Main Channel link 👇\n"
-            "https://t.me/+WmR8_AwNaVFjYjk9\n\n"
-            "combo daily drops here 👇\n"
-            "https://t.me/+XOYKtSnUYOIwMjM1"
+            "Join our community channels:\n\n"
+            "🔗 Main Channel: https://t.me/+WmR8_AwNaVFjYjk9\n"
+            "💧 Daily Combo Drops: https://t.me/+XOYKtSnUYOIwMjM1"
         )
     elif query.data == "store":
         text = (
-            "buy  steam games\n"
-            "buy configs\n"
-            "available to work and build telegram bot , scripts , working apps , websites and more\n"
-            "buy netflix , prime , hotstar , and more services\n"
-            "buy cursor , windsurf , augment code , trae , and more IDE accounts\n"
-            "buy API working keys for  unlimited image gen , chatbot and more\n"
-            "buy courses"
+            "Welcome to our store! We offer a wide range of digital products and services, including:\n\n"
+            "🎮 Steam Games\n"
+            "⚙️ Custom Configurations\n"
+            "💻 Custom Development (Telegram bots, scripts, apps, websites)\n"
+            "🎬 Streaming Service Subscriptions (Netflix, Prime, Hotstar, etc.)\n"
+            "🚀 Developer Tool Accounts (Cursor, Windsurf, Augment Code, Trae, etc.)\n"
+            "🔑 API Keys (Unlimited Image Generation, Chatbots, etc.)\n"
+            "📚 Educational Courses"
         )
     elif query.data == "contact":
-        text = "Contact: @eres007"
+        text = "For inquiries and support, please reach out to us at: @eres007"
     else:
         text = "Unknown option"
 
