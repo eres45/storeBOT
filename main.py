@@ -24,14 +24,20 @@ if not TOKEN:
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
-        [InlineKeyboardButton("Our Channels", callback_data="channels")],
-        [InlineKeyboardButton("Store", callback_data="store")],
-        [InlineKeyboardButton("Contact", callback_data="contact")],
+        [InlineKeyboardButton("📢 Our Channels", callback_data="channels")],
+        [InlineKeyboardButton("🛒 Store", callback_data="store")],
+        [InlineKeyboardButton("📞 Contact", callback_data="contact")],
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    await update.message.reply_text("Welcome! Please choose an option:", reply_markup=reply_markup)
+    welcome_message = (
+        "👋 Welcome to Eres Bot !\n\n"
+        "We're excited to have you here.\n\n"
+        "🔽 Use the buttons below to get started"
+    )
+
+    await update.message.reply_text(welcome_message, reply_markup=reply_markup)
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
